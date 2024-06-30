@@ -49,7 +49,8 @@ export const NavBar = () => {
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <a href="">
+                        <a href="https://github.com/SamuelParrales/sql-query-from-spreadsheet"
+                            target="_blank">
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 <Icon icon="bi:github" className="text-lg me-1" /> Repository
                             </NavigationMenuLink>
