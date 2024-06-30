@@ -1,14 +1,14 @@
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
 import { Icon } from "@iconify/react/dist/iconify.js"
 import { Item } from "@radix-ui/react-navigation-menu"
-
+import iconMain from '/icon.png'
 export const NavBar = () => {
     return (
         <div className="border-b py-1 mb-4 bg-primary-foreground">
             <NavigationMenu >
                 <NavigationMenuList className="px-2">
                     <Item >
-                        <img className="h-11 rounded-xl" src="/icon.png" alt="icon page" />
+                        <img className="h-11 rounded-xl" src={iconMain} alt="icon page" />
                     </Item>
                     <NavigationMenuItem>
                         <NavigationMenuTrigger><Icon icon="material-symbols:quiz-outline-rounded" className="text-xl me-1" /> About</NavigationMenuTrigger>
