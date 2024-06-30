@@ -1,0 +1,41 @@
+:root{
+  /* --bg #ECF0F1
+  #2C3E50
+  #2980B9
+  #2ECC71
+  #34495E
+  #BDC3C7
+  #E67E22 */
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+
+.prueba:focus:hover{
+  outline: none;
+}
+
+.focus\:outline-none:focus{
+  outline: none !important;
+  border: none !important; 
+}
+.hover\:outline-none:focus{
+  outline: none !important;
+  border: none !important; 
+}
+.active\:outline-none:active{
+  outline: none !important;
+  border: none !important; 
+}
+
+.CodeMirror {
+  /* Set height, width, borders, and global font properties here */
+  font-family: monospace;
+  height: 100px;
+  color: black;
+  direction: ltr;
+}
