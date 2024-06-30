@@ -61,7 +61,7 @@ export const UploadFile = ({ className, onLoadFile, name = undefined }: Props) =
                     onDrop={handleDrop}
                     onClick={handleClick}
                 >
-                    <div className="pointer-events-none">
+                    <div className="pointer-events-none p-3">
                         {
                             file
                                 ?
@@ -73,7 +73,7 @@ export const UploadFile = ({ className, onLoadFile, name = undefined }: Props) =
                                 </div>
                                 : hasEntered
                                     ? <span>drop it here!</span>
-                                    : <span className="text-foreground h-min">Choose or drag the spreadsheet here</span>
+                                    : <span className="text-foreground h-min">Choose or drag the spreadsheet here!</span>
                         }
                     </div>
 

@@ -24,12 +24,14 @@ export class QueryGenerator {
             const rowValue = table.columns.reduce((acc, { nullable, type }, indexC) => {
                 let value = row[indexC];
                 
+                if (type !== 2 && value) {
+                  value = `'${value}'`;
+              }
+
                 if (nullable) {
                     if (!value && value !== 0) {
                         value = 'NULL';
                     }
-                } else if (type !== 2) {
-                    value = `'${value}'`;
                 }
     
                 return acc += `${value}, `
@@ -57,7 +59,7 @@ export class QueryGenerator {
         const url = URL.createObjectURL(file)
         const a = document.createElement("a");
         a.href = url;
-        a.download = 'prueba.sql';
+        a.download = `${table.name}.sql`;
         a.click();
         URL.revokeObjectURL(url);
     }
@@ -116,13 +118,16 @@ export class QueryGenerator {
           const rowValue = columnsUpdate.reduce((accC, { name, nullable, type }, indexC) => {
             let value = row[indexC];
            
+            if (type !== 2 &&value) {
+              value = `'${value}'`;
+            }
+
             if (nullable) {
               if (!value && value !== 0) {
                 value = 'NULL';
               }
-            } else if (type !== 2) {
-              value = `'${value}'`;
-            }
+            }  
+       
       
             return accC += `${quotes}${name}${quotes} = ${value}, `
           }, '')
@@ -131,18 +136,20 @@ export class QueryGenerator {
           const where = whereColumns.reduce((code, { search, indexCol }) => {
             const { nullable, type } = table.columns[indexCol];
             let value = row[indexCol];
-     
+
+            if (type !== 2 && value) {
+              value = `'${value}'`;
+            }
+
             if (nullable) {
               if (!value && value !== 0) {
                 value = 'NULL';
               }
-            } else if (type !== 2) {
-              value = `'${value}'`;
-            }
+            } 
       
             return code.replace(search, value!.toString());
           }, code)
-          return accR + rowValue.slice(0, -2) + '\n' + where + '\n'+';';
+          return accR + rowValue.slice(0, -2) + '\n' + where + ';' +'\n';
         }, '')
       
         const file = new Blob([query], { type: 'text/sql' });
@@ -150,7 +157,7 @@ export class QueryGenerator {
         const url = URL.createObjectURL(file)
         const a = document.createElement("a");
         a.href = url;
-        a.download = 'prueba.sql';
+        a.download = `${table.name}.sql`;
         a.click();
         URL.revokeObjectURL(url);
 
