@@ -95,7 +95,10 @@ export class QueryGenerator {
                 messagge: `The column "${name}" hasn't been found.`
             };
           }
-          columnsUpdate.splice(index, 1);
+          columnsUpdate[index] ={
+            ...columnsUpdate[index],
+            id:'',
+          } ;
           const whereColumn = {
             search: colData[0],
             name: colData[1],
@@ -115,7 +118,8 @@ export class QueryGenerator {
           accR += `${operation} ${quotes}${table.name}${quotes} SET `
       
           //Generate set
-          const rowValue = columnsUpdate.reduce((accC, { name, nullable, type }, indexC) => {
+          const rowValue = columnsUpdate.reduce((accC, { id,name, nullable, type}, indexC) => {
+            if(!id) return accC;
             let value = row[indexC];
            
             if (type !== 2 &&value) {
